@@ -56,40 +56,52 @@ VSCodeVim is a Vim emulator for [Visual Studio Code](https://code.visualstudio.c
 ## Normal Mode
 
 ```json
-"vim.normalModeKeyBindingsNonRecursive": [
+ "vim.normalModeKeyBindingsNonRecursive": [
     {
       "before": ["<leader>", "d"],
       "after": ["d", "d"]
     },
-    // Copy a line
-    {
+    {// copy a line/selected lines or words
       "before": ["c"],
       "after": ["y", "y"]
     },
-    //Delete a character before
-    {
+
+    {// Delete before the cursor
       "before": ["d"],
       "after": ["X"]
     },
     {
       "before": ["<C-n>"],
       "commands": [":nohl"]
+    },
+    {// Indent a line
+      "before": [">"],
+      "commands": ["editor.action.indentLines"]
+    },
+    {// Oudent a line
+      "before": ["<"],
+      "commands": ["editor.action.outdentLines"]
+    },
+    {// Commment a line
+      "before": ["c", "c"],
+      "commands": ["editor.action.addCommentLine"]
+    },
+    {// Uncomment a line
+      "before": ["c", "u"],
+      "commands": ["editor.action.removeCommentLine"]
     }
   ],
+
 ```
 
 ## Visual Mode
 
 ```json
- "vim.visualModeKeyBindings": [
+   "vim.visualModeKeyBindings": [
     // In visual mode i goes to insert mode
     {
       "before": ["i"],
       "after": ["<Esc>", "i"]
-    },
-    {
-      "before": ["c"],
-      "after": ["y", "y"]
     }
   ],
 ```
